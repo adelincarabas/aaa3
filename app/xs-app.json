@@ -1,0 +1,12 @@
+{
+    "welcomeFile": "breadcrumb-ui/webapp",
+    "authenticationMethod": "none",
+    "routes": [{
+        "source": "^/webapp/(.*)$",
+        "target": "$1",
+        "localDir": "breadcrumb-ui/webapp"
+    }, {
+        "source": "^(.*)$",
+        "destination": "srv-api"
+    }]
+}

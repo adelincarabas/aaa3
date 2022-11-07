@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Tech_Process" EntityType="CatalogService.Tech_Process"/>
+                <EntitySet Name="Tech_Process_Dependency" EntityType="CatalogService.Tech_Process_Dependency"/>
+                <EntitySet Name="Tech_Process_Ownership" EntityType="CatalogService.Tech_Process_Ownership"/>
+                <EntitySet Name="breadcrumb1" EntityType="CatalogService.breadcrumb1"/>
+            </EntityContainer>
+            <EntityType Name="Tech_Process">
+                <Key>
+                    <PropertyRef Name="KEY"/>
+                </Key>
+                <Property Name="OWNER" Type="Edm.String" MaxLength="50"/>
+                <Property Name="KEY" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="APPLICATION_VERSION" Type="Edm.String" MaxLength="50"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" MaxLength="200"/>
+            </EntityType>
+            <EntityType Name="Tech_Process_Dependency">
+                <Property Name="OWNER" Type="Edm.String" MaxLength="50"/>
+                <Property Name="BUSINESS_PROCESS" Type="Edm.String" MaxLength="50"/>
+                <Property Name="TECHNICAL_PROCESS" Type="Edm.String" MaxLength="50"/>
+                <Property Name="DEPENDING_ON_TECHNICAL_PROCESS" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="Tech_Process_Ownership">
+                <Property Name="OWNER" Type="Edm.String" MaxLength="50"/>
+                <Property Name="BACKUP" Type="Edm.String" MaxLength="10"/>
+                <Property Name="TECHNICAL_PROCESS" Type="Edm.String" MaxLength="50"/>
+                <Property Name="DEPENDENCY_TYPE" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Object_Type" Type="Edm.String" MaxLength="50"/>
+                <Property Name="ACESS_TYPE" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Repository" Type="Edm.String" MaxLength="50"/>
+                <Property Name="FILE" Type="Edm.String" MaxLength="200"/>
+                <Property Name="TECHNICAL_OBJECT" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="breadcrumb1">
+                <Key>
+                    <PropertyRef Name="KEY"/>
+                    <PropertyRef Name="OWNER"/>
+                    <PropertyRef Name="DESCRIPTION"/>
+                </Key>
+                <Property Name="KEY" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="OWNER" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" MaxLength="200" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="CatalogService.breadcrumb1/KEY">
+                <Annotation Term="Common.Label" String="KEY: KEY"/>
+            </Annotations>
+            <Annotations Target="CatalogService.breadcrumb1/OWNER">
+                <Annotation Term="Common.Label" String="OWNER: OWNER"/>
+            </Annotations>
+            <Annotations Target="CatalogService.breadcrumb1/DESCRIPTION">
+                <Annotation Term="Common.Label" String="DESCRIPTION: DESCRIPTION"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

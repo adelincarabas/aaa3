@@ -1,0 +1,105 @@
+<mvc:View controllerName="breadcrumbui.controller.Worklist" displayBlock="true" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:table="sap.ui.table" height="100%">
+    <Page id="page" title="Account Planning">
+
+        <!-- <Label text="Object Type" labelFor="combobox1" /> -->
+        <ComboBox id="combobox1" change="handleChange">
+            <core:Item key="CALC VIEW" text="CALC VIEW" />
+            <core:Item key="TABLE" text="TABLE" />
+             <core:Item key="PROCEDURE" text="PROCEDURE" />
+             <core:Item key="TABLE TYPES" text="TABLE TYPES" />
+             <core:Item key="FUNCTION" text="FUNCTION" />
+             <core:Item key="SEQUENCE" text="SEQUENCE" />
+             <core:Item key="" text="" />
+        </ComboBox>
+        <!-- <Label text="Object Type" labelFor="combobox1" /> -->
+		<!-- binding="{catalogModel>/Tech_Process_Dependency/CatalogService.calc(...)}" -->
+		<VBox  >
+			<MultiComboBox id="multicombo" selectionChange="handleSelectionChange" selectionFinish="handleSelectionFinish" width="500px" items="{
+				path: 'catalogModel>/Tech_Object' 
+			}" >
+			<!-- value="{catalogModel>$Parameter/a}"-->
+					<core:Item key="{catalogModel>Key_Name}" text="{catalogModel>Key_Name}" />
+				</MultiComboBox>
+		</VBox>
+        <Button width="300px" text="Breadcrumb" press=".onSave" />
+
+        <Table id="breadcrumbList2" inset="false" items="{
+        path: 'catalogModel>/Tech_Process_Ownership'
+    }">
+            <columns>
+			<Column
+				width="16em">
+				<Text text="Technical Process" />
+			</Column>
+            <Column
+				width="24em">
+				<Text text="Technical Object" />
+			</Column>
+		</columns>
+        <items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Text
+						text="{catalogModel>TECHNICAL_PROCESS}"/>
+					<Text
+						text="{catalogModel>TECHNICAL_OBJECT}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+        </Table>
+		<VBox binding="{catalogModel>/calc(...)}" >
+       
+
+
+	<table:TreeTable
+	id="TreeTableBasic"
+                    rows="{path:'treeTableJSON>/arrayForTreeTable', parameters: {arrayNames:['categories']}}"
+                    selectionMode="MultiToggle"
+                    enableSelectAll="false"
+                    ariaLabelledBy="title"
+					visibleRowCount="16"
+					>
+
+		<table:columns>
+			<table:Column width="17rem">
+				<Label text="TECHNICAL_OBJECT"/>
+				<table:template>
+					<Text text="{treeTableJSON>TECHNICAL_OBJECT}" wrapping="false" />
+				</table:template>
+			</table:Column>
+			<table:Column width="10rem">
+				<Label text="OWNER"/>
+				<table:template>
+					<Text text="{treeTableJSON>OWNER}" wrapping="false" />
+				</table:template>
+			</table:Column>
+				<table:Column width="15rem">
+				<Label text="BUSINESS_PROCESS"/>
+				<table:template>
+					<Text text="{treeTableJSON>BUSINESS_PROCESS}" wrapping="false" />
+				</table:template>
+			</table:Column>
+				<table:Column width="13rem">
+				<Label text="TECHNICAL_PROCESS"/>
+				<table:template>
+					<Text text="{treeTableJSON>TECHNICAL_PROCESS}" wrapping="false" />
+				</table:template>
+			</table:Column>
+				 <table:Column width="20rem">
+				<Label text="DEPENDING_ON_TECHNICAL_PROCESS"/>
+				<table:template>
+					<Text text="{treeTableJSON>DEPENDING_ON_TECHNICAL_PROCESS}" wrapping="false" />
+				</table:template>
+			</table:Column>
+				<table:Column width="10rem">
+				<Label text="KEY"/>
+				<table:template>
+					<Text text="{treeTableJSON>KEY}" wrapping="false" />
+				</table:template>
+			</table:Column>
+		</table:columns>
+
+</table:TreeTable>
+</VBox>
+    </Page>
+</mvc:View>

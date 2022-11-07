@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="BREADCRUMB_SELECTION" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="BREADCRUMB_SELECTION"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY">
+    <resourceUri>APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY</resourceUri>
+  </DataSource>
+  <DataSource id="APP_DEV_TOOLS_TECHNICAL_OBJECT_OWNERSHIP">
+    <resourceUri>APP_DEV_TOOLS_TECHNICAL_OBJECT_OWNERSHIP</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="TECHNICAL_PROCESS"/>
+      <viewAttribute id="DEPENDING_ON_TECHNICAL_PROCESS"/>
+      <viewAttribute id="OBJECT_TYPE"/>
+      <viewAttribute id="TECHNICAL_OBJECT"/>
+      <viewAttribute id="OWNER"/>
+      <viewAttribute hidden="true" id="JOIN$TECHNICAL_PROCESS$TECHNICAL_PROCESS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPENDING_ON_TECHNICAL_PROCESS" source="DEPENDING_ON_TECHNICAL_PROCESS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER" source="OWNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$TECHNICAL_PROCESS$TECHNICAL_PROCESS" source="TECHNICAL_PROCESS"/>
+    </input>
+    <input node="APP_DEV_TOOLS_TECHNICAL_OBJECT_OWNERSHIP">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TECHNICAL_PROCESS" source="TECHNICAL_PROCESS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OBJECT_TYPE" source="OBJECT_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TECHNICAL_OBJECT" source="TECHNICAL_OBJECT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$TECHNICAL_PROCESS$TECHNICAL_PROCESS" source="TECHNICAL_PROCESS"/>
+    </input>
+    <joinAttribute name="JOIN$TECHNICAL_PROCESS$TECHNICAL_PROCESS"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="TECHNICAL_PROCESS" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TECHNICAL_PROCESS"/>
+      <keyMapping columnObjectName="Join_1" columnName="TECHNICAL_PROCESS"/>
+    </attribute>
+    <attribute id="DEPENDING_ON_TECHNICAL_PROCESS" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEPENDING_ON_TECHNICAL_PROCESS"/>
+      <keyMapping columnObjectName="Join_1" columnName="DEPENDING_ON_TECHNICAL_PROCESS"/>
+    </attribute>
+    <attribute id="OBJECT_TYPE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OBJECT_TYPE"/>
+      <keyMapping columnObjectName="Join_1" columnName="OBJECT_TYPE"/>
+    </attribute>
+    <attribute id="TECHNICAL_OBJECT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TECHNICAL_OBJECT"/>
+      <keyMapping columnObjectName="Join_1" columnName="TECHNICAL_OBJECT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="181"/>
+      <rectangleSize height="30" width="372"/>
+    </shape>
+    <shape modelObjectName="APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="1" y="24"/>
+      <rectangleSize width="399"/>
+    </shape>
+    <shape modelObjectName="APP_DEV_TOOLS_TECHNICAL_OBJECT_OWNERSHIP" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="481" y="27"/>
+      <rectangleSize width="379"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

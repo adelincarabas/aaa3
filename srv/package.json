@@ -1,0 +1,23 @@
+{
+    "name": "bookshop-srv",
+    "version": "1.0.0",
+    "dependencies": {
+        "@sap/cds": "^3.18.4",
+        "express": "^4.17.1",
+        "@sap/hana-client": "^2.4.167"
+    },
+    "engines": {
+        "node": "14.19.3"
+    },
+    "scripts": {
+        "start": "cds serve ../gen/srv/srv/csn.json"
+    },
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "hana",
+                "model": "../gen/srv/srv/csn.json"
+            }
+        }
+    }
+}

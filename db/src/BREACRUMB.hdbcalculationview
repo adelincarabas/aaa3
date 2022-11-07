@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="BREACRUMB" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="BREACRUMB.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="APP_DEV_TOOLS_TECHNICAL_PROCESS">
+    <resourceUri>APP_DEV_TOOLS_TECHNICAL_PROCESS</resourceUri>
+  </DataSource>
+  <DataSource id="APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY">
+    <resourceUri>APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="KEY"/>
+      <viewAttribute id="OWNER"/>
+      <viewAttribute id="DESCRIPTION"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="APP_DEV_TOOLS_TECHNICAL_PROCESS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="KEY" source="KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER" source="OWNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+    </input>
+    <input node="APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="KEY" source="DEPENDING_ON_TECHNICAL_PROCESS"/>
+    </input>
+    <joinAttribute name="KEY"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="KEY" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KEY"/>
+      <keyMapping columnObjectName="Join_1" columnName="KEY"/>
+    </attribute>
+    <attribute id="OWNER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OWNER"/>
+      <keyMapping columnObjectName="Join_1" columnName="OWNER"/>
+    </attribute>
+    <attribute id="DESCRIPTION" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESCRIPTION"/>
+      <keyMapping columnObjectName="Join_1" columnName="DESCRIPTION"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-25" y="221"/>
+      <rectangleSize height="30" width="409"/>
+    </shape>
+    <shape modelObjectName="APP_DEV_TOOLS_TECHNICAL_PROCESS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-5" y="35"/>
+      <rectangleSize width="309"/>
+    </shape>
+    <shape modelObjectName="APP_DEV_TOOLS_TECHNICAL_PROCESS_DEPENDENCY" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="348" y="29"/>
+      <rectangleSize width="399"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

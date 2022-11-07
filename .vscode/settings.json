@@ -1,0 +1,9 @@
+{
+    "sqltools.connections": [
+        {
+            "dialect": "SQLite",
+            "database": "/home/user/projects/bookshop/bookshop.db",
+            "name": "My BookShop SqlLite"
+        }
+    ]
+}
